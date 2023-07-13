@@ -1,0 +1,10 @@
+.nav {
+    position: fixed;
+    top: 0;
+}
+
+.logo {
+    margin-right: 1%;
+    width: 3%;
+    height: auto;
+}
