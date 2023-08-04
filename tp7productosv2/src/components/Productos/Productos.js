@@ -22,13 +22,14 @@ const Productos = () => {
             setSkip(100);
             url += "/category/" + categoria
         }
-        axios.get(url)
-            .then(res => { 
-                setProductos([...productos, res.data.products]); 
-            });
+        axios.get(url).then(res => {setProductos([...productos, ...res.data.products])});
     }
 
-    useEffect(() => getProductos('https://dummyjson.com/products'), []);
+    useEffect(() => {
+        setSkip(0);
+        setProductos([]);
+        getProductos('https://dummyjson.com/products');
+    }, [categoria]);
 
     return (
         <>
