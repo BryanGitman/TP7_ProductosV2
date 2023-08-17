@@ -9,3 +9,8 @@
     width: 3%;
     height: auto;
 }
+
+.boton {
+    border: none;
+    background: none;
+}

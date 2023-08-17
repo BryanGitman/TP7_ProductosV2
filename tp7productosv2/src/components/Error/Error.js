@@ -3,7 +3,8 @@ import './Error.css';
 
 const Error = () => {
     return (
-        <div className="c1voot80 dir dir-ltr">
+        <div className="c1voot80 dir dir-ltr containerE">
+            <br></br>
             <div className="t7ae5dl dir dir-ltr">
                 <div className="h8i5hv0 dir dir-ltr">
                     <h1 tabIndex="-1" className="hpipapi dir dir-ltr error" elementtiming="LCP-target">404</h1>

@@ -30,7 +30,7 @@ const Layout = () => {
                             <ul className="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                                 <li className="nav-item"><Link to="/productos" className="nav-link">Productos</Link></li>
                                 <li className="nav-item dropdown">
-                                    <a className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Categorías</a>
+                                    <button className="nav-link dropdown-toggle boton" id="navbarDropdown" data-bs-toggle="dropdown" aria-expanded="false">Categorías</button>
                                     <ul className="dropdown-menu" aria-labelledby="navbarDropdown" id="listaCategorias">
                                         <li><Link to="/productos" className="dropdown-item">Todos los productos</Link></li>
                                         <li><hr className="dropdown-divider" /></li>

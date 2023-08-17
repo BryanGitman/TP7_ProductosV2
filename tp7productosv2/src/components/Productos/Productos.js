@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import './Productos.css';
 import axios from 'axios';
+import { calificarProducto } from "../../helpers";
 
 const Productos = () => {
     const { categoria } = useParams();
@@ -10,11 +11,12 @@ const Productos = () => {
 
     const skipear = () =>
     {
-        setSkip(skip + 30);
-        getProductos("https://dummyjson.com/products?skip=" + skip)
-    }
+        getProductos("https://dummyjson.com/products?skip=" + (skip + 30)).then(res => {
+            setProductos([...productos, ...res.data.products])
+        });
 
-    const calificarProducto = puntuacion => {}
+        setSkip(skip + 30);
+    }
 
     const getProductos = url => {
         if(categoria)
@@ -22,13 +24,14 @@ const Productos = () => {
             setSkip(100);
             url += "/category/" + categoria
         }
-        axios.get(url).then(res => {setProductos([...productos, ...res.data.products])});
+        return axios.get(url);
     }
 
     useEffect(() => {
         setSkip(0);
-        setProductos([]);
-        getProductos('https://dummyjson.com/products');
+        getProductos('https://dummyjson.com/products').then(res => {
+            setProductos(res.data.products)
+        });
     }, [categoria]);
 
     return (
@@ -38,15 +41,13 @@ const Productos = () => {
                     <div className="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                         {   
                             productos.map(producto => (
-                                <div className="col mb-5">
+                                <div key={producto.id} className="col mb-5">
                                     <div className="card h-100">
                                         <img className="card-img-top" src={producto.images[0]} alt="..." />
                                         <div className="card-body p-4">
                                             <div className="text-center">
                                                 <h5 className="fw-bolder">{producto.title}</h5>
-                                                <div className="d-flex justify-content-center small text-warning mb-2">
-                                                    {calificarProducto(producto.rating)}
-                                                </div>
+                                                <div className="d-flex justify-content-center small text-warning mb-2">{calificarProducto(producto.rating)}</div>
                                                 <p className="precio">${producto.price}</p>
                                             </div>
                                         </div>
@@ -60,7 +61,7 @@ const Productos = () => {
                     </div>
                 </div>
             </section>
-            <div>{skip<100?<a className="btn btn-outline-dark mt-auto verMas" onclick={skipear()}>Ver más</a>:""}</div>
+            <div>{skip<100?<button className="btn btn-outline-dark mt-auto verMas" onClick={skipear}>Ver más</button>:""}</div>
         </>
     );
 }
