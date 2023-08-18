@@ -22,7 +22,14 @@ const Productos = () => {
         if(categoria)
         {
             setSkip(100);
-            url += "/category/" + categoria
+            if(categoria[0] !== 'x')
+            {
+                url += "/category/" + categoria
+            }
+            else
+            {
+                url += "/search?q=" + categoria.slice(1, categoria.length)
+            }
         }
         return axios.get(url);
     }

@@ -1,0 +1,20 @@
+.tachado {
+    text-decoration: line-through;
+}
+
+.precio {
+    font-size: 180%;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.comprar {
+    width: 30%;
+}
+
+.containerD {
+    margin-top: 5%;
+}
+
+.detalles {
+    margin-left: 5%;
+}

@@ -5,6 +5,12 @@ import axios from 'axios';
 
 const Layout = () => {
     const [listaCategorias, setCategorias] = useState([]);
+    const [busqueda, setBusqueda] = useState();
+
+    const handleChange = (e) => {
+        e.preventDefault();
+        setBusqueda(e.target.value);
+      };
 
     useEffect(() => {
         let ignore = false;
@@ -40,8 +46,8 @@ const Layout = () => {
                                 <li className="nav-item"><Link to="/contacto" className="nav-link">Contacto</Link></li>
                             </ul>
                             <form className="d-flex" role="search">
-                                <input id="busqueda" className="form-control me-2" type="search" placeholder="Buscá un producto" aria-label="Search"/>
-                                    <button className="btn btn-outline-danger" id="buscar">Buscar</button>
+                                <input className="form-control me-2" type="search" placeholder="Buscá un producto" aria-label="Search" onChange={handleChange} />
+                                <Link to={"/productos/x" + busqueda} className="btn btn-outline-danger">Buscar</Link>
                             </form>
                         </div>
                 </div>
