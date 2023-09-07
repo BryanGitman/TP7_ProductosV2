@@ -1,12 +1,14 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import './Detalle.css';
 import axios from 'axios';
 import { calificarProducto } from "../../helpers";
+import CarritoContext from "../../context/carritoContext";
 
 const Detalle = () => {
     const { idProducto } = useParams();
     const [producto, setProducto] = useState({ images: [] });
+    const carrito = useContext(CarritoContext);
 
     const getProducto = () => axios.get('https://dummyjson.com/products/' + idProducto).then(res => setProducto(res.data));
 
@@ -34,8 +36,11 @@ const Detalle = () => {
         return imagenes;
     }
 
+    const agregarAlCarrito = () => {
+        carrito.setCarrito([...carrito.carrito, producto]);
+    }
+
     useEffect(() => {
-        console.log(idProducto)
         getProducto();
     }, []);
 
@@ -72,6 +77,8 @@ const Detalle = () => {
                     <p className="card-text">{"Descripción: " + producto.description}</p>
                     <p className="card-text"><small className="text-muted">{producto.category?.charAt(0).toUpperCase() + producto.category?.slice(1)}</small></p>
                     <button className="btn btn-primary comprar">Comprar</button>
+                    <br></br>
+                    <button onClick={() => agregarAlCarrito()} className="btn btn-secondary comprar">Agregar al carrito</button>
                 </div>
             </div>
         </div>

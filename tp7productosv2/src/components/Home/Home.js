@@ -40,7 +40,7 @@ const Home = () => {
                 <div className="carousel-inner tamañoFijo">
                     {
                         productosRandom.map(product => (
-                            <Link to={"/producto/" + product.id}>
+                            <Link to={"/producto/" + product.id} key={product.id}>
                                 <div className="carousel-item">
                                     {console.log(product)}
                                     <img src={product.images[0]} className="d-block w-100" alt="..." />
