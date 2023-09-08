@@ -7,3 +7,7 @@
     font-size: 180%;
     font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
+
+.checked {
+    float: right;
+}

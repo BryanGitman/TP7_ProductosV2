@@ -9,6 +9,7 @@ const Detalle = () => {
     const { idProducto } = useParams();
     const [producto, setProducto] = useState({ images: [] });
     const carrito = useContext(CarritoContext);
+    const [agregado, setAgregado] = useState("");
 
     const getProducto = () => axios.get('https://dummyjson.com/products/' + idProducto).then(res => setProducto(res.data));
 
@@ -36,8 +37,15 @@ const Detalle = () => {
         return imagenes;
     }
 
-    const agregarAlCarrito = () => {
+    function timeout(delay) {
+        return new Promise( res => setTimeout(res, delay) );
+    }
+
+    const agregarAlCarrito = async() => {
         carrito.setCarrito([...carrito.carrito, producto]);
+        setAgregado(<img className="check" alt="..." src="https://i.gifer.com/7efs.gif"></img>);
+        await timeout(2000);
+        setAgregado("");
     }
 
     useEffect(() => {
@@ -79,6 +87,7 @@ const Detalle = () => {
                     <button className="btn btn-primary comprar">Comprar</button>
                     <br></br>
                     <button onClick={() => agregarAlCarrito()} className="btn btn-secondary comprar">Agregar al carrito</button>
+                    {agregado}
                 </div>
             </div>
         </div>

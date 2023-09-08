@@ -1,13 +1,15 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext} from "react";
 import { Link, useParams } from "react-router-dom";
 import './Productos.css';
 import axios from 'axios';
 import { calificarProducto } from "../../helpers";
+import CarritoContext from "../../context/carritoContext";
 
 const Productos = () => {
     const { categoria } = useParams();
     const [skip, setSkip] = useState(0);
     const [productos, setProductos] = useState([]);
+    const carrito = useContext(CarritoContext);
 
     const skipear = () =>
     {
@@ -60,6 +62,9 @@ const Productos = () => {
                                         </div>
                                         <div className="card-footer p-4 pt-0 border-top-0 bg-transparent">
                                             <div className="text-center"><Link to={"/producto/" + producto.id} className="btn btn-outline-dark mt-auto">Ver detalles</Link></div>
+                                            {carrito.carrito.find((p) => p.id === producto.id)?<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="green" className="bi bi-check-circle-fill checked" viewBox="0 0 16 16">
+                                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                                            </svg>:""}
                                         </div>
                                     </div>
                                 </div>
