@@ -8,7 +8,76 @@
     background-color: #fffdfd;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
 .imagen {
+    width: auto;
+    max-height: 100px;
+}
+
+.number-control {
+  display: flex;
+  align-items: center;
+}
+
+.botonC {
+    border: none;
+    background: none;
+    margin: 0;
+    padding: 0;
+}
+
+.number-left::before,
+.number-right::after {
+  content: attr(data-content);
+  background-color: #333333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid black;
+  width: 20px;
+  height: 30px;
+  color: white;
+  transition: background-color 0.3s;
+  cursor: pointer;
+}
+
+.number-left::before {
+  content: "-";
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.number-right::after {
+  content: "+";
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.number-quantity {
+  padding: 0.25rem;
+  border: 0;
+  width: 50px;
+  height: 30px;
+  -moz-appearance: textfield;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  border-radius: 10;
+}
+
+.number-left:hover::before,
+.number-right:hover::after {
+  background-color: #666666;
+}
+
+.line {
+    margin: 2%;
+    margin-left: 5%;
+    width: 90%;
+    height: 0.5px;
+    background-color:#a3a3a3;
+}
+
+.comprarC {
     width: 100%;
-    height: auto;
+    margin-bottom: 2%;
 }

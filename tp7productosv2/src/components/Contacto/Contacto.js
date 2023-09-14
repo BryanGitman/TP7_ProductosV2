@@ -2,15 +2,13 @@ import React, { useState } from "react";
 import './Contacto.css';
 
 const Contacto = () => {
-    const [name, setName] = useState('');
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Aquí podrías agregar la lógica para enviar el formulario de contacto
     console.log('Formulario enviado:', { name, email, message });
-    // Luego podrías resetear los campos del formulario
     setName('');
     setEmail('');
     setMessage('');

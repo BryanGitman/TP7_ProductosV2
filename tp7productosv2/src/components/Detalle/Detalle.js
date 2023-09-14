@@ -42,7 +42,26 @@ const Detalle = () => {
     }
 
     const agregarAlCarrito = async() => {
-        carrito.setCarrito([...carrito.carrito, producto]);
+        let noEsta = true;
+        let carritoNuevo = carrito.carrito.map(p => 
+        {
+            if(p.id === producto.id)
+            {
+                noEsta = false;
+                return {...p, cantidad: p.cantidad+1, precioTotal: (p.cantidad+1)*p.price};
+            }
+            return p;
+        });
+        if(noEsta)
+        {
+            producto.cantidad = 1;
+            producto.precioTotal = producto.price;
+            carrito.setCarrito([...carrito.carrito, producto]);
+        }
+        else
+        {
+            carrito.setCarrito(carritoNuevo);
+        }
         setAgregado(<img className="check" alt="..." src="https://i.gifer.com/7efs.gif"></img>);
         await timeout(2000);
         setAgregado("");
