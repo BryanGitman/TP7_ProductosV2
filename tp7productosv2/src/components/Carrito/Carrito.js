@@ -38,9 +38,9 @@ const Carrito = () => {
                         <div className="col-4"><h4>{producto.title}</h4></div>
                         <div className="col-3"><button onClick={() => eliminarProducto(producto)} className="btn btn-danger">Eliminar</button></div>
                         <div className="col-2">
-                            <div class="number-control">
+                            <div className="number-control">
                                 <button className="botonC number-left" onClick={() => cambiarCantidad((producto.cantidad-1), producto)}></button>
-                                <input type="number" name="number" class="number-quantity" value={producto.cantidad} onChange={(e) => cambiarCantidad(e.target.value, producto)}/>
+                                <input type="number" name="number" className="number-quantity" value={producto.cantidad} onChange={(e) => cambiarCantidad(e.target.value, producto)}/>
                                 <button className="botonC number-right" onClick={() => cambiarCantidad((producto.cantidad+1), producto)}></button>
                             </div>
                         </div>

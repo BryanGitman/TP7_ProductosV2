@@ -9,9 +9,21 @@ import Contacto from "./components/Contacto/Contacto";
 import Error from "./components/Error/Error";
 import Carrito from "./components/Carrito/Carrito";
 import CarritoContext from "./context/carritoContext";
+import { useEffect } from 'react';
 
 function App() {
   const [carrito, setCarrito] = useState([]);
+
+  useEffect(() => {
+    let carritoStorage = JSON.parse(localStorage.getItem("carrito"));
+    if(carritoStorage) {
+      setCarrito(carritoStorage);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+  }, [carrito]);
 
   return (
     <CarritoContext.Provider value={{carrito, setCarrito}}>
